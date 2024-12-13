@@ -16,12 +16,13 @@
   width: 100%;
 }
 
-.header-section .more-info-link {
+.more-info-link {
   font-family: fantasy, cursive;
 }
 
 @media (max-width:768px) {
-  .header-section { text-align: center;
+  .header-section {
+    text-align: center;
   }
 }
 
