@@ -38,6 +38,7 @@ var createNewTaskElement=function(taskString){
 
     //Each elements, needs appending
     checkBox.type="checkbox";
+    checkBox.className="task-checkbox";
     editInput.type="text";
     editInput.className="task-input hidden-input";
 
@@ -125,23 +126,37 @@ var taskCompleted=function(){
 
     //Append the task list item to the #completed-tasks
     var listItem=this.parentNode;
+    var label = listItem.querySelector(".task-label");
+
+    // Add class to strike through the text
+    label.classList.add("task-completed");
+
+    // Move task to completed tasks
     completedTasksHolder.appendChild(listItem);
+
+    
     bindTaskEvents(listItem, taskIncomplete);
 
 }
 
-
+//Mark task as incomplete.
+//When the checkbox is unchecked
 var taskIncomplete=function(){
     console.log("Incomplete Task...");
-//Mark task as incomplete.
-    //When the checkbox is unchecked
+
     //Append the task list item to the #incompleteTasks.
     var listItem=this.parentNode;
+    var label = listItem.querySelector(".task-label");
+    
+    // Remove class to undo strike-through
+    label.classList.remove("task-completed");
+
+    // Move task back to incomplete tasks
     incompleteTaskHolder.appendChild(listItem);
+
+    // Rebind events to mark as completed
     bindTaskEvents(listItem,taskCompleted);
 }
-
-
 
 var ajaxRequest=function(){
     console.log("AJAX Request");
